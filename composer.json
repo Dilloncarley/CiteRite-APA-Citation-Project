@@ -1,0 +1,12 @@
+{
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/noodlehaus/dispatch"
+        }
+    ],
+    "require": {
+        "noodlehaus/dispatch": "4.0.*"
+    }
+    
+}
