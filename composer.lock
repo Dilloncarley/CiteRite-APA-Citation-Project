@@ -1,0 +1,116 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "6b55ba92d0116b3a1720f97aa604bcb5",
+    "packages": [
+        {
+            "name": "noodlehaus/dispatch",
+            "version": "4.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/noodlehaus/dispatch",
+                "reference": "6511e58736ba1c6677ebb6afe532318eac756840"
+            },
+            "require": {
+                "php": ">= 5.4.0"
+            },
+            "suggest": {
+                "dispatch/dispatch-extras": "Encryption, caching and more, for dispatch",
+                "dispatch/dispatch-mustache": "mustache template support within dispatch",
+                "giggleboxstudios/dispatch-handlebars": "handlebars template support within dispatch"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/dispatch.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jesus A. Domingo",
+                    "role": "Developer",
+                    "homepage": "http://noodlehaus.github.io/"
+                },
+                {
+                    "name": "Kafene",
+                    "role": "Contributor",
+                    "homepage": "https://github.com/kafene"
+                },
+                {
+                    "name": "Martin Angelov",
+                    "role": "Contributor",
+                    "homepage": "https://github.com/martinaglv"
+                },
+                {
+                    "name": "Lars",
+                    "role": "Developer",
+                    "homepage": "https://github.com/larsbo"
+                },
+                {
+                    "name": "4d47",
+                    "role": "Contributor",
+                    "homepage": "https://github.com/4d47"
+                },
+                {
+                    "name": "Bastian Widmer",
+                    "role": "Contributor",
+                    "homepage": "https://github.com/dasrecht"
+                },
+                {
+                    "name": "Lloyd Zhou",
+                    "role": "Contributor",
+                    "homepage": "https://github.com/lloydzhou"
+                },
+                {
+                    "name": "Darkalemanbr",
+                    "role": "Contributor",
+                    "homepage": "https://github.com/darkalemanbr"
+                },
+                {
+                    "name": "Amin By",
+                    "role": "Contributor",
+                    "homepage": "https://github.com/xielingwang"
+                },
+                {
+                    "name": "Ross Masters",
+                    "role": "Contributor",
+                    "homepage": "https://github.com/rmasters"
+                },
+                {
+                    "name": "scan",
+                    "role": "Contributor",
+                    "homepage": "https://github.com/scan"
+                }
+            ],
+            "description": "a microframework/front-controller",
+            "homepage": "http://noodlehaus.github.io/dispatch/",
+            "keywords": [
+                "framework",
+                "micro",
+                "microframework",
+                "microphp",
+                "router"
+            ],
+            "time": "2014-03-01T01:30:13+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
