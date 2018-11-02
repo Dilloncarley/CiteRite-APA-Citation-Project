@@ -16,3 +16,4 @@ $config['db']['dbname'] = ''; // database name you want to connect to
 ?>
 ```
 4. Ensure you have Composer Dependency manager and run `composer install` 
+5. Run `php -S localhost:8888 -t public public/index.php` to serve the site
