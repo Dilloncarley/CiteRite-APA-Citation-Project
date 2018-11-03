@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+        {% block head %}
+        <meta charset="utf-8">
+        <title>CiteRite</title>
+    <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link href="./css/materialize.min.css" rel="stylesheet" type="text/css">
+        
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        {% endblock %}
+      <style>
+        .sidenav li a{
+          color: #eceff1;
+        }
+        @media only screen and (max-width: 992px) {
+          .brand-logo{
+            margin-right: 10px;
+          }
+        }
+        .brand-logo{
+          margin-left:10px;
+        }
+        .card {
+         
+        
+          transform: translateY(50%);
+        }
+      </style>
+    </head>
+
+    <body class="blue-grey darken-3">
+        <nav>
+            <div class="nav-wrapper  blue-grey lighten-1">
+              <a href="#!" class="brand-logo">CiteRite</a>
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="sass.html">Login</a></li>
+                <li><a href="badges.html">About</a></li>
+              </ul>
+            </div>
+          </nav>
+        
+          <ul class="sidenav  blue-grey lighten-1" id="mobile-demo">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">Javascript</a></li>
+            <li><a href="mobile.html">Mobile</a></li>
+          </ul>
+        <div id="content">{% block content %}{% endblock %}</div>
+      <!--JavaScript at end of body for optimized loading-->
+      
+      <script type="text/javascript" src="{{ base_url() }}/js/materialize.min.js"></script>
+      <script type="text/javascript">
+      M.AutoInit();
+        
+       </script>
+    </body>
+  </html>
