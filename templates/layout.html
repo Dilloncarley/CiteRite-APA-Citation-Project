@@ -7,7 +7,7 @@
     <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
-      <link href="./css/materialize.min.css" rel="stylesheet" type="text/css">
+      <link href="{{ base_url() }}/css/materialize.min.css" rel="stylesheet" type="text/css">
         
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -24,31 +24,52 @@
         .brand-logo{
           margin-left:10px;
         }
-        .card {
-         
-        
+        .welcome-card {
           transform: translateY(50%);
         }
+        .login-card {
+          transform: translateY(20%);
+        }
+        /* label focus color */
+      .input-field input[type=text]:focus + label {
+        color: #81d4fa !important;
+      }
+      /* label underline focus color */
+      .input-field input[type=text]:focus {
+        border-bottom: 1px solid #81d4fa !important;
+        box-shadow: 0 1px 0 0 #81d4fa !important;
+      }
+      
+        /* label focus color */
+        .input-field input[type=password]:focus + label {
+        color: #81d4fa !important;
+      }
+      /* label underline focus color */
+      .input-field input[type=password]:focus {
+        border-bottom: 1px solid #81d4fa !important;
+        box-shadow: 0 1px 0 0 #81d4fa !important;
+      }
+      .input-field label {
+       color: #eceff1 !important;
+      }
       </style>
     </head>
 
     <body class="blue-grey darken-3">
         <nav>
             <div class="nav-wrapper  blue-grey lighten-1">
-              <a href="#!" class="brand-logo">CiteRite</a>
+              <a href="/" class="brand-logo">CiteRite</a>
               <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
               <ul class="right hide-on-med-and-down">
-                <li><a href="sass.html">Login</a></li>
-                <li><a href="badges.html">About</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/about">About</a></li>
               </ul>
             </div>
           </nav>
         
           <ul class="sidenav  blue-grey lighten-1" id="mobile-demo">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">Javascript</a></li>
-            <li><a href="mobile.html">Mobile</a></li>
+              <li><a href="/login">Login</a></li>
+              <li><a href="/about">About</a></li>
           </ul>
         <div id="content">{% block content %}{% endblock %}</div>
       <!--JavaScript at end of body for optimized loading-->
