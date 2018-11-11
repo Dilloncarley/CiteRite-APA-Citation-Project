@@ -1,8 +1,6 @@
 {
-
-    
     "require": {
-        "slim/slim": "^3.0",
-        "illuminate/database": "~5.1"
+        "slim/slim": "2.*",
+        "twig/twig": "~1.0"
     }
 }
