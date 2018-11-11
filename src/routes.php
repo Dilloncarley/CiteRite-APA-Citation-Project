@@ -14,18 +14,19 @@
 // })->setName('profile');
 
 //home page
-$app->get('/', function ($request, $response) {
-    return $this->view->render($response, 'home.html');
+$app->get('/', function () use ($app, $twig) {
+    echo $twig->render('home.html', array('name' => 'Fabien'));
+
 });
 
 //login page
-$app->get('/login', function ($request, $response) {
-    return $this->view->render($response, 'login.html');
+$app->get('/login', function() use ($app, $twig) {
+    echo $twig->render('login.html', array('name' => 'Fabien'));
 });
 
 //about page
-$app->get('/about', function ($request, $response) {
-    return $this->view->render($response, 'about.html');
+$app->get('/about', function() use ($app, $twig)  {
+    echo $twig->render('about.html', array('name' => 'Fabien'));
 });
 
 //professor dashboard
@@ -39,10 +40,8 @@ $app->get('/student-dashboard', function ($request, $response) {
 });
 
 //specific quiz page
-$app->get('/quiz/{id}', function ($request, $response, array $args) {
-    $id = $args['id'];
-    return $this->view->render($response, 'quiz.html', [
-            'id' => $id
-    ]);
+$app->get('/quiz/:id', function($id) use ($app, $twig) {
+    echo $twig->render('quiz.html', array('id' => $id));
 });
+
 ?>
