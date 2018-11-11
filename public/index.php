@@ -1,17 +1,24 @@
 <?php 
-    use \Psr\Http\Message\ServerRequestInterface as Request;
-    use \Psr\Http\Message\ResponseInterface as Response;
+    // use \Psr\Http\Message\ServerRequestInterface as Request;
+    // use \Psr\Http\Message\ResponseInterface as Response;
     require 'vendor/autoload.php';
-    require 'config/config.php';
+    // require 'config/config.php';
+
     if (PHP_SAPI === 'cli-server' && $_SERVER['SCRIPT_FILENAME'] !== __FILE__) { return false; }
 
     
     //config app with settings
-    $app = new \Slim\App(['settings' => $config]);
-    $container = $app->getContainer();
+    $app = new \Slim\Slim();
     
-    //App dependencies
-    require 'src/dependencies.php';
+    $app->config(array(
+        'debug' => true,
+        'templates.path' => '../templates'
+    ));
+    $loader = new Twig_Loader_Filesystem('templates');
+    $twig = new Twig_Environment($loader, array(
+        'cache' => null,
+    ));
+  
 
     // App routes
     require 'src/routes.php';
