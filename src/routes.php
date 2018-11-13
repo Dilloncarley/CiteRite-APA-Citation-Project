@@ -44,4 +44,22 @@ $app->get('/quiz/:id', function($id) use ($app, $twig) {
     echo $twig->render('quiz.html', array('id' => $id));
 });
 
+//where a professor creates a quiz
+$app->get('/create_quiz', function() use ($app, $twig) {
+    echo $twig->render('create_quiz.html');
+});
+//when a professor creates a quiz
+$app->post('/create_quiz', function() use ($app, $twig, $db) {
+    $quizTitle = $app->request->post('quiz_title');
+
+    $quizDueDate= $app->request->post('quiz_due_date');
+    $quizDueTime= $app->request->post('quiz_due_time');
+    
+    $quizDue = $quizDueDate .= $quizDueTime;
+    $sql = "INSERT INTO quzzies (, last_name) VALUES ('John', 'Doe');";
+    $users = $db->query($sql);
+    echo $twig->render('create_quiz.html');
+    $db = null;
+});
+
 ?>

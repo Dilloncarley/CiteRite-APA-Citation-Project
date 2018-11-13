@@ -35,6 +35,9 @@
         .login-card {
           transform: translateY(20%);
         }
+        .create-quiz-card  {
+          transform: translate(6%, 10%);
+        }
         /* label focus color */
       .input-field input[type=text]:focus + label {
         color: #81d4fa !important;
@@ -83,7 +86,17 @@
       <script type="text/javascript" src="{{ app.request.baseUrl }}/js/materialize.min.js"></script>
       <script type="text/javascript" src="{{ app.request.baseUrl }}/js/froala_editor.min.js"></script>
       <script type="text/javascript" src="{{ app.request.baseUrl }}/js/fullscreen.min.js"></script>
-      <script> $(function() { $('.editor').froalaEditor({
+      <script type="text/javascript">
+        M.AutoInit();
+        $(document).ready(function(){
+          $('.datepicker').datepicker({
+            format: 'yyyy-mmm-dd'
+          });
+          $('.timepicker').timepicker();
+        });
+   </script>
+      <script type="text/javascript">
+       $(function() { $('.editor').froalaEditor({
             theme: 'custom',
             height: 275,
             zIndex: 2003,
@@ -94,9 +107,7 @@
             toolbarButtonsXS: ['undo', 'redo' , '-', 'bold', 'italic', 'underline', 'outdent', 'indent']
         }) 
       }); </script>
-      <script type="text/javascript">
-            M.AutoInit();
-       </script>
+     
 
     </body>
   </html>
