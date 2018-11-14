@@ -3,16 +3,16 @@
 ## Installation
 1. run `git clone https://github.com/Dilloncarley/CiteRite`
 2. cd into `CiteRite` and run `mkdir config`
-3. create a file named `config.php` with contents of:
+3. create a file named `config.php` with contents of and fill in appropriate values:
 ```
 <?php
 $config_array = array(
     'debug' => true,
     'templates.path' => 'templates',
-    'dbHost' => 'localhost',
-    'dbUser' => 'root',
+    'dbHost' => '',
+    'dbUser' => '',
     'dbPass' => '',
-    'dbName' => 'test'
+    'dbName' => ''
 );
 ?>
 ```
