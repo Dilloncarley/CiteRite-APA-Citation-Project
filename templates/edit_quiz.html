@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+ <!-- Modal Structure -->
+ 
+<h5 class="center-align error">{{errors}}</h5>
+
+
+<div class="valign-wrapper">
+        <h4 class=" white-text">{{title}} due at {{time}} on {{date}}</h4>
+        <a href="#modal1" class="btn-floating  waves-effect waves-light red modal-trigger white-text "><i class="material-icons white-text">edit</i></a>
+      </div>
+    <div id="modal1" class="modal">
+            <div class="modal-content blue-grey darken-1">
+                    <form  action="/update_quiz" method="post">
+                        <div class="row">
+                                <div class="col s12 m4 center-align">  
+                                     <i class="material-icons white-text">title</i>
+                                     <input id="quiz_title" name="quiz_title" type="text" class="white-text center-align" value="{{title}}" required>
+                                 </div>
+                                 <div class="col s5 m3 push-m1 center-align">
+                                         <i class="material-icons white-text">calendar_today</i>
+                                        <input class="white-text center-align" id="edit_date" onclick="dateInstance.open()" value="{{date}}">
+                                 </div>
+                                 <div class="col s5 m3 push-m2 push-s1 center-align">
+                                        <i class="material-icons white-text">access_time</i>
+                                        <input class="white-text center-align" id="edit_time" onclick="timeInstance.open()" value="{{time}}">
+                                 </div>
+ 
+                     </div>
+                      
+                    </form>
+            </div>
+            
+            <!-- <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div> -->
+          </div>
+
+          <i class="material-icons  white-text">access_time</i>
+          <input type="text" id="dateP" class="datepicker white-text center-align hide" name="quiz_due_date" value="{{date}}" required >
+          <input type="text" id="timeP" class="timepicker white-text center-align hide" name="quiz_due_time" value="{{time}}" required>
+
+    
+{% endblock %}
