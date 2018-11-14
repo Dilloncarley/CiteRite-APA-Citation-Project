@@ -21,6 +21,9 @@
         .sidenav li a{
           color: #eceff1;
         }
+        .error {
+          color: red;
+        }
         @media only screen and (max-width: 992px) {
           .brand-logo{
             margin-right: 10px;
@@ -60,6 +63,10 @@
       .input-field label {
        color: #eceff1 !important;
       }
+      .inline-icon {
+        vertical-align: bottom;
+       
+      }
       </style>
     </head>
 
@@ -87,13 +94,60 @@
       <script type="text/javascript" src="{{ app.request.baseUrl }}/js/froala_editor.min.js"></script>
       <script type="text/javascript" src="{{ app.request.baseUrl }}/js/fullscreen.min.js"></script>
       <script type="text/javascript">
-        M.AutoInit();
-        $(document).ready(function(){
-          $('.datepicker').datepicker({
-            format: 'yyyy-mmm-dd'
-          });
-          $('.timepicker').timepicker();
-        });
+       M.AutoInit();
+          //init datepicker, timepicker and modal elements
+          var dateElems = document.querySelectorAll('.datepicker');
+          var dateInstances = M.Datepicker.init(dateElems, {
+            format: 'yyyy-mm-dd',
+            vibrate: true,
+            onClose	: function(){ //keep the input updated with actual picker on edit quiz page
+              var datePickerInput = document.getElementById("edit_date");
+              datePickerInput.value = datePicker.value;
+            }
+            });
+          var datePicker = document.getElementById("dateP");
+        
+          var dateInstance = M.Datepicker.getInstance(datePicker);
+          dateInstance.setDate(datePicker.value);
+      
+     
+          var timeElems = document.querySelectorAll('.timepicker');
+          var timeInstances = M.Timepicker.init(timeElems, {twelveHour: true,  vibrate: true});
+          var timePicker = document.getElementById("timeP");
+          var timeInstance = M.Timepicker.getInstance(timePicker);
+
+          var modalElems = document.querySelectorAll('.modal');
+          var modalInstances = M.Modal.init(modalElems);
+          var datepicker = document.getElementById("dateP");
+
+
+
+
+      // var elems = document.querySelectorAll('.datepicker');
+      //   var instances = M.Datepicker.init(elems);
+      // var datepicker = document.getElementById("dateP");
+      // console.log(datepicker);
+      // var instance = M.Datepicker.getInstance(datepicker);
+        //  document.addEventListener('DOMContentLoaded', function() {
+        
+
+        // });
+       
+       
+        // $(document).ready(function(){
+        //   $('.datepicker').datepicker({
+        //     format: 'yyyy-mm-dd',
+        //     vibrate: true
+        //   });
+        //   $('.timepicker').timepicker({
+        //     twelveHour: true,
+        //     vibrate: true
+        //   });
+        //   $('.modal').modal();
+        // });
+    
+  
+
    </script>
       <script type="text/javascript">
        $(function() { $('.editor').froalaEditor({
