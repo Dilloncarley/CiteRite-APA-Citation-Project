@@ -68,7 +68,7 @@ $app->post('/create_quiz', function() use ($app, $twig, $db) {
 
 //route when professor is adding questions to quiz
 $app->get('/edit_quiz/:quizid', function($quizId) use ($app, $twig, $db) {
-    
+
     $sql = "SELECT title FROM quizzes WHERE id='$quizId'";
     $quizTitle = $db->query($sql)->fetchColumn();
 
@@ -83,7 +83,7 @@ $app->get('/edit_quiz/:quizid', function($quizId) use ($app, $twig, $db) {
         $date = $splitTimeStamp[0];
         $time = date("g:i a", strtotime($splitTimeStamp[1]));
 
-        echo $twig->render('edit_quiz.html', array('title' =>  $quizTitle, 'date' =>   $date, 'time' => $time));
+        echo $twig->render('edit_quiz.html', array('quizId'=> $quizId, 'title' =>  $quizTitle, 'date' =>   $date, 'time' => $time));
        
     } else {
         $app->response->redirect('/404');
@@ -91,5 +91,34 @@ $app->get('/edit_quiz/:quizid', function($quizId) use ($app, $twig, $db) {
     }
     
 });
+//if professor updates general information about quiz after initial creation of quiz
+// $app->post('/update_quiz/:quizId', function($quizId) use ($app, $twig, $db){
+//     $isXHR = $app->request->isAjax();
+// });
+$app->post('/update_quiz', function() use ($app, $db) {
+    // $quizId = $app->request->post('quizId');
+    $quizUpdatedTitle = $app->request->post('quiz_title');
+    $quizUpdatedDate = $app->request->post('date');
+    $quizUpdatedTime = $app->request->post('time');
+    $req = $app->request();
+    $quizId = json_encode($req->post('quiz_title'));
+    $idSql = "SELECT id FROM quizzes WHERE id=11";
 
+    if($updateQuizQuery->rowCount()) // was query a success?
+    {
+        $sql = "UPDATE quizzes SET title=$quizId WHERE id=11";
+        $updateQuizQuery= $db->query($sql);
+        $response_array['status'] = 'success';  
+
+    } else {
+        $response_array['status'] = 'error';  
+        // throw new ResourceNotFoundException();
+    }
+    
+    $res = new \Slim\Http\Response();
+    $res->setStatus(400);
+    $res->headers->set('Content-Type', 'application/json');
+    echo json_encode(['status'=> $response_array['status'], 'error' => 'wrong']);
+  
+});
 ?>
