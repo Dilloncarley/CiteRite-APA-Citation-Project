@@ -4,8 +4,8 @@ CREATE TABLE IF NOT EXISTS user (
 	teach BOOLEAN); <if 0, student; if 1, teacher>
 
 CREATE TABLE IF NOT EXISTS quiz_stats (
-	quiz_id INT NOT NULL,
-	usrnme VARCHAR(100) NOT NULL,
+	quiz_id INT NOT NULL PRIMARY KEY,
+	usrnme VARCHAR(100) NOT NULL PRIMARY KEY,
 	ttl_time TIME,
 	ttl_attempts INT
 	CONSTRAINT ‘fk_quiz_stats_user’
