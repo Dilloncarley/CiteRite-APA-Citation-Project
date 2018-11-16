@@ -170,7 +170,7 @@
 
         $.ajax({
           type: 'post',
-          url: '/update_quiz',
+          url: '{{app.request.getRootUri}}/update_quiz',
           data: $('.saveForm').serialize(),
           success: function (res) {
            
