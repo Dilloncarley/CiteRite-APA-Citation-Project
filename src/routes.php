@@ -50,7 +50,7 @@ $app->post('/create_quiz', function() use ($app, $twig, $db) {
     $quizDueTime= $app->request->post('quiz_due_time');
 
      //convert quiz due date and time to timestamp
-    $time_in_24_hour_format  = date("H:i", strtotime($quizDueTime));
+    $time_in_24_hour_format  =   date("H:i", strtotime($quizDueTime));
     $quizDateTime = $quizDueDate .= " " . $time_in_24_hour_format . ":00";
 
     $sql = "INSERT INTO quizzes (due, title) VALUES ('$quizDateTime', '$quizTitle');";
@@ -62,7 +62,7 @@ $app->post('/create_quiz', function() use ($app, $twig, $db) {
         $app->response->redirect('/edit_quiz'.'/'.$quiz_id, 303);
 
     } else {
-        echo $twig->render('create_quiz.html', array('error' => "Something went wrong..... Please try again."));
+        echo $twig->render('create_quiz.html', array('error' => "Something went wrong..... Please try again.",'app' => $app));
     }
     $db = null;
 });
@@ -84,7 +84,7 @@ $app->get('/edit_quiz/:quizid', function($quizId) use ($app, $twig, $db) {
         $date = $splitTimeStamp[0];
         $time = date("g:i a", strtotime($splitTimeStamp[1]));
 
-        echo $twig->render('edit_quiz.html', array('quizId'=> $quizId, 'title' =>  $quizTitle, 'date' =>   $date, 'time' => $time));
+        echo $twig->render('edit_quiz.html', array('app' => $app, 'quizId'=> $quizId, 'title' =>  $quizTitle, 'date' =>   $date, 'time' => $time));
        
     } else {
         $app->response->redirect('/404');
