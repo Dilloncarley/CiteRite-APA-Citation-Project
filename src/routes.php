@@ -1,44 +1,45 @@
 <?php 
 //home page
 $app->get('/', function () use ($app, $twig) {
-    echo $twig->render('home.html', array('name' => 'Fabien'));
+    
+    echo $twig->render('home.html', array('name' => 'Fabien','app' => $app));
 
 });
 
 //login page
 $app->get('/login', function() use ($app, $twig) {
-    echo $twig->render('login.html', array('name' => 'Fabien'));
+    echo $twig->render('login.html', array('name' => 'Fabien','app' => $app));
 });
 
 //about page
 $app->get('/about', function() use ($app, $twig)  {
-    echo $twig->render('about.html', array('name' => 'Fabien'));
+    echo $twig->render('about.html', array('name' => 'Fabien','app' => $app));
 });
 
 //professor dashboard
 $app->get('/professor-dashboard', function() use ($app, $twig)  {
-    echo $twig->render('professor-dashboard.html');
+    echo $twig->render('professor-dashboard.html', array('app' => $app));
 });
 
 
 //student dashboard
 $app->get('/student-dashboard', function() use ($app, $twig)  {
-    echo $twig->render('student-dashboard.html');
+    echo $twig->render('student-dashboard.html', array('app' => $app));
 });
 
 //specific quiz page
 $app->get('/quiz/:id', function($id) use ($app, $twig) {
-    echo $twig->render('quiz.html', array('id' => $id));
+    echo $twig->render('quiz.html', array('id' => $id,'app' => $app));
 });
 
 //404 page
 $app->get('/404', function() use ($app, $twig)  {
-    echo $twig->render('404.html');
+    echo $twig->render('404.html', array('app' => $app));
 });
 
 //where a professor creates a quiz
 $app->get('/create_quiz', function() use ($app, $twig) {
-    echo $twig->render('create_quiz.html');
+    echo $twig->render('create_quiz.html',array('app' => $app));
 });
 
 //when a professor creates a quiz
@@ -97,16 +98,21 @@ $app->get('/edit_quiz/:quizid', function($quizId) use ($app, $twig, $db) {
 // });
 $app->post('/update_quiz', function() use ($app, $db) {
     // $quizId = $app->request->post('quizId');
-    $quizUpdatedTitle = $app->request->post('quiz_title');
-    $quizUpdatedDate = $app->request->post('date');
-    $quizUpdatedTime = $app->request->post('time');
-    $req = $app->request();
-    $quizId = json_encode($req->post('quiz_title'));
-    $idSql = "SELECT id FROM quizzes WHERE id=11";
+    // $quizUpdatedTitle = $app->request->post('quiz_title');
+    // $quizUpdatedDate = $app->request->post('date');
+    // $quizUpdatedTime = $app->request->post('time');
 
-    if($updateQuizQuery->rowCount()) // was query a success?
+    $req = $app->request();
+    $quizId = json_encode($req->post('quizId'));
+    $quizUpdatedTitle = json_encode($req->post('quiz_title'));
+    $quizUpdatedDate =  json_encode($req->post('date'));
+    $quizUpdatedTime = json_encode($req->post('time'));
+
+    $idSql = "SELECT id FROM quizzes WHERE id=ff";
+    $quizIdQuery = $db->query($idSql)->fetchColumn();
+    if($quizIdQuery) // was query a success?
     {
-        $sql = "UPDATE quizzes SET title=$quizId WHERE id=11";
+        $sql = "UPDATE quizzes SET title=$quizUpdatedTitle WHERE id=$quizId";
         $updateQuizQuery= $db->query($sql);
         $response_array['status'] = 'success';  
 
@@ -118,7 +124,7 @@ $app->post('/update_quiz', function() use ($app, $db) {
     $res = new \Slim\Http\Response();
     $res->setStatus(400);
     $res->headers->set('Content-Type', 'application/json');
-    echo json_encode(['status'=> $response_array['status'], 'error' => 'wrong']);
+    echo json_encode(['status'=> $response_array['status']]);
   
 });
 ?>
