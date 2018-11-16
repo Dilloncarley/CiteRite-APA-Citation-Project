@@ -1,0 +1,33 @@
+CREATE TABLE IF NOT EXISTS user (
+	usrnme VARCHAR(100) NOT NULL PRIMARY KEY,
+	psswrd VARCHAR(100) NOT NULL,
+	teach BOOLEAN); <if 0, student; if 1, teacher>
+
+CREATE TABLE IF NOT EXISTS quiz_stats (
+	quiz_id INT NOT NULL,
+	usrnme VARCHAR(100) NOT NULL,
+	ttl_time TIME,
+	ttl_attempts INT
+	CONSTRAINT ‘fk_quiz_stats_user’
+		FOREIGN KEY (usrnme) REFERENCES user (usrnme)
+		ON DELETE CASCADE
+		ON UPDATE RESTRICT
+); <for TIME, HH:MM:SS.ssssss>
+
+CREATE TABLE IF NOT EXISTS quest_stats (
+	quiz_id INT NOT NULL,
+	ques_id INT NOT NULL,
+	usrnme VARCHAR(100) NOT NULL,
+	time TIME,
+	attmpt_cnt INT,
+	CONSTRAINT ‘fk_quest_stats_quiz_stats’
+		FOREIGN KEY (usrnme) REFERENCES quiz_stats (usrnme)
+		ON DELETE CASCADE
+		ON UPDATE RESTRICT,
+	CONSTRAINT ‘fk_quest_stats_quiz_stats’
+		FOREIGN KEY (quiz_id) REFERENCES quiz_stats (quiz_id)
+		ON DELETE CASCADE
+		ON DELETE RESTRICT
+);
+
+Elements in each table are subject to change as determined by the group.
