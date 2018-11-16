@@ -10,7 +10,10 @@
       <link href="{{app.request.getRootUri}}/css/materialize.min.css" rel="stylesheet" type="text/css">
       <!--Import font awesome from msstate's cdn-->
       <link href="//cdn01.its.msstate.edu/e/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-      
+
+      <script type="text/javascript" src="//cdn01.its.msstate.edu/e/jquery/3.3.1/jquery-3.3.1.min.js"></script>
+
+      <script type="text/javascript" src="{{app.request.getRootUri}}/js/materialize.min.js"></script>
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         {% endblock %}
@@ -111,79 +114,11 @@
         <div id="content">{% block content %}{% endblock %}</div>
       <!--JavaScript at end of body for optimized loading-->
       <!--Msstate's jquery cdn-->
-      <script type="text/javascript" src="//cdn01.its.msstate.edu/e/jquery/3.3.1/jquery-3.3.1.min.js"></script>
-      <script type="text/javascript" src="{{app.request.getRootUri}}/js/materialize.min.js"></script>
+     
+      <script type="text/javascript" src="{{app.request.getRootUri}}/js/ajaxRoutes.js"></script>
       <script type="text/javascript" src="{{app.request.getRootUri}}/js/froala_editor.min.js"></script>
       <script type="text/javascript" src="{{app.request.getRootUri}}/js/fullscreen.min.js"></script>
-      <script type="text/javascript">
-       M.AutoInit();
-          //init datepicker, timepicker and modal elements
-          var dateElems = document.querySelectorAll('.datepicker');
-          var dateInstances = M.Datepicker.init(dateElems, {
-            format: 'yyyy-mm-dd',
-            vibrate: true,
-            onClose	: function(){ //keep the input updated with actual picker on edit quiz page
-              var datePickerInput = document.getElementById("edit_date");
-              datePickerInput.value = datePicker.value;
-            }
-            });
-          var datePicker = document.getElementById("dateP");
-        
-          var dateInstance = M.Datepicker.getInstance(datePicker);
-          dateInstance.setDate(datePicker.value);
       
-     
-          var timeElems = document.querySelectorAll('.timepicker');
-          var timeInstances = M.Timepicker.init(timeElems, {
-            twelveHour: true,
-              vibrate: true,
-              onCloseStart	: function(){ //keep the input updated with actual picker on edit quiz page
-              var timePickerInput = document.getElementById("edit_time");
-              timePickerInput.value = timePicker.value;
-            }
-            });
-          var timePicker = document.getElementById("timeP");
-          var timeInstance = M.Timepicker.getInstance(timePicker);
-
-          var modalElems = document.querySelectorAll('.modal');
-          var modalInstances = M.Modal.init(modalElems);
-          var datepicker = document.getElementById("dateP");
-        //save button on edit_quiz page
-        // function save(quizId) {
-        //     var xhttp;
-
-        //     xhttp = new XMLHttpRequest();
-        //     xhttp.onreadystatechange = function() {
-        //       if (this.readyState == 4 && this.status == 200) {
-        //         document.getElementById("result").innerHTML = this.responseText;
-        //       }
-        //     };
-        //     xhttp.open("POST", "/update_quiz/"+quizId, true);
-        //     xhttp.send();   
-        // }
-
-        $(function () {
-
-   $(".save-btn").click(function(e) {
-
-        e.preventDefault();
-
-        $.ajax({
-          type: 'post',
-          url: '{{app.request.getRootUri}}/update_quiz',
-          data: $('.saveForm').serialize(),
-          success: function (res) {
-           
-              console.log(res)
-            
-          }
-        });
-        
-
-      });
-
-      });
-   </script>
    
       <script type="text/javascript">
        $(function() { $('.editor').froalaEditor({
@@ -198,6 +133,6 @@
         }) 
       }); </script>
      
-
+   
     </body>
   </html>
