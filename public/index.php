@@ -12,7 +12,9 @@
     $twig = new Twig_Environment($loader, array(
         'cache' => null,
     ));
-  
+    //set timezone
+    date_default_timezone_set("America/Chicago");
+    
     //database set up PDO class
     $db = new PDO('mysql:host='.$app->config('dbHost').';dbname='.$app->config('dbName').'', $app->config('dbUser'), $app->config('dbPass'));
   
