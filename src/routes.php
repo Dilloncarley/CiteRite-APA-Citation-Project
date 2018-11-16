@@ -49,9 +49,9 @@ $app->post('/create_quiz', function() use ($app, $twig, $db) {
     $quizDueDate= $app->request->post('quiz_due_date');
     $quizDueTime= $app->request->post('quiz_due_time');
 
-     //convert quiz due date and time to timestamp
+    //convert quiz due date and time to timestamp
     $time_in_24_hour_format  =   date("H:i", strtotime($quizDueTime));
-    $quizDateTime = $quizDueDate .= " " . $time_in_24_hour_format . ":00";
+    $timeStamp = $quizDueDate .= " " . $time_in_24_hour_format . ":00";
 
     $sql = "INSERT INTO quizzes (due, title) VALUES ('$quizDateTime', '$quizTitle');";
     $insertQuizQuery= $db->query($sql);
@@ -69,7 +69,7 @@ $app->post('/create_quiz', function() use ($app, $twig, $db) {
 
 //route when professor is adding questions to quiz
 $app->get('/edit_quiz/:quizid', function($quizId) use ($app, $twig, $db) {
-
+ 
     $sql = "SELECT title FROM quizzes WHERE id='$quizId'";
     $quizTitle = $db->query($sql)->fetchColumn();
 
@@ -84,7 +84,7 @@ $app->get('/edit_quiz/:quizid', function($quizId) use ($app, $twig, $db) {
         $date = $splitTimeStamp[0];
         $time = date("g:i a", strtotime($splitTimeStamp[1]));
 
-        echo $twig->render('edit_quiz.html', array('app' => $app, 'quizId'=> $quizId, 'title' =>  $quizTitle, 'date' =>   $date, 'time' => $time));
+        echo $twig->render('edit_quiz.html', array('quizId'=> $quizId, 'title' =>  $quizTitle, 'date' =>   $date, 'time' => $time));
        
     } else {
         $app->response->redirect('/404');
@@ -92,39 +92,35 @@ $app->get('/edit_quiz/:quizid', function($quizId) use ($app, $twig, $db) {
     }
     
 });
-//if professor updates general information about quiz after initial creation of quiz
-// $app->post('/update_quiz/:quizId', function($quizId) use ($app, $twig, $db){
-//     $isXHR = $app->request->isAjax();
-// });
-$app->post('/update_quiz', function() use ($app, $db) {
-    // $quizId = $app->request->post('quizId');
-    // $quizUpdatedTitle = $app->request->post('quiz_title');
-    // $quizUpdatedDate = $app->request->post('date');
-    // $quizUpdatedTime = $app->request->post('time');
 
+$app->post('/update_quiz', function() use ($app, $db) {
+   
     $req = $app->request();
     $quizId = json_encode($req->post('quizId'));
     $quizUpdatedTitle = json_encode($req->post('quiz_title'));
-    $quizUpdatedDate =  json_encode($req->post('date'));
-    $quizUpdatedTime = json_encode($req->post('time'));
+    $quizUpdatedDate =  $req->post('date');
+    $quizUpdatedTime = $req->post('time');
+    
+    $time_in_24_hour_format  =   date("H:i", strtotime($quizUpdatedTime));
+    $timeStamp = $quizUpdatedDate .= " " . $time_in_24_hour_format . ":00";
 
-    $idSql = "SELECT id FROM quizzes WHERE id=ff";
+    //quiz id check
+    $idSql = "SELECT id FROM quizzes WHERE id=$quizId";
     $quizIdQuery = $db->query($idSql)->fetchColumn();
-    if($quizIdQuery) // was query a success?
-    {
-        $sql = "UPDATE quizzes SET title=$quizUpdatedTitle WHERE id=$quizId";
+
+    if($quizIdQuery) { // was query a success?
+        $sql = "UPDATE quizzes SET title=$quizUpdatedTitle, due='$timeStamp' WHERE id=$quizId";
         $updateQuizQuery= $db->query($sql);
-        $response_array['status'] = 'success';  
+        $response = 1;  
 
     } else {
-        $response_array['status'] = 'error';  
-        // throw new ResourceNotFoundException();
+        $response = 0;  
     }
     
     $res = new \Slim\Http\Response();
     $res->setStatus(400);
     $res->headers->set('Content-Type', 'application/json');
-    echo json_encode(['status'=> $response_array['status']]);
+    echo $response;
   
 });
 ?>
