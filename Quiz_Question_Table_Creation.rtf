@@ -15,3 +15,19 @@ CREATE TABLE IF NOT EXISTS quest_prob (
 	first_p VARCHAR(100),
 	last_p VARCHAR(100),
 	doi VARCHAR(100));
+	
+CREATE TABLE IF NOT EXISTS quest_prob (
+	quiz_id INT NOT NULL,
+	ques_id INT NOT NULL PRIMARY KEY,
+	author VARCHAR(100),
+	year VARCHAR(100),
+	title_a VARCHAR(100),
+	title_p VARCHAR(100),
+	vol VARCHAR(100),
+	iss VARCHAR(100),
+	first_p VARCHAR(100),
+	last_p VARCHAR(100),
+	doi VARCHAR(100));
+
+
+All elements are subject to change at team's decision.
