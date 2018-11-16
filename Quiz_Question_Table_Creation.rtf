@@ -1,6 +1,7 @@
 CREATE TABLE IF NOT EXISTS quizzes (
 	quiz_id INT NOT NULL PRIMARY KEY,
 	description VARCHAR(100),
+	dte_creatd TIMESTAMP,
 	due_date DATETIME);  <EX: YYYY-MM-DD HH:MM:SS>
 
 CREATE TABLE IF NOT EXISTS quest_prob (
