@@ -14,9 +14,14 @@ CREATE TABLE IF NOT EXISTS quest_prob (
 	iss VARCHAR(100),
 	first_p VARCHAR(100),
 	last_p VARCHAR(100),
-	doi VARCHAR(100));
+	doi VARCHAR(100)
+	CONSTRAINT 'fk_quest_prob_quizzes'
+		FOREIGN KEY (quiz_id) REFERENCES quizzes (quiz_id)
+		ON DELETE CASCADE
+		ON UPDATE RESTRICT
+);
 	
-CREATE TABLE IF NOT EXISTS quest_prob (
+CREATE TABLE IF NOT EXISTS quest_ans (
 	quiz_id INT NOT NULL,
 	ques_id INT NOT NULL PRIMARY KEY,
 	author VARCHAR(100),
@@ -27,7 +32,12 @@ CREATE TABLE IF NOT EXISTS quest_prob (
 	iss VARCHAR(100),
 	first_p VARCHAR(100),
 	last_p VARCHAR(100),
-	doi VARCHAR(100));
+	doi VARCHAR(100)
+	CONSTRAINT 'fk_quest_ans_quizzes'
+		FOREIGN KEY (quiz_id) REFERENCES quizzes (quiz_id)
+		ON DELETE CASCADE
+		ON UPDATE RESTRICT
+);
 
 
 All elements are subject to change at team's decision.
