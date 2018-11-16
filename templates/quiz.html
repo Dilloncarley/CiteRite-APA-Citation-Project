@@ -3,9 +3,9 @@
 {% block head %}
     {{ parent() }}
     <!--Base css for editor-->
-    <link href="{{ app.request.baseUrl }}/css/custom-theme.css" rel="stylesheet" type="text/css">
-    <link href="{{ app.request.baseUrl }}/css/froala_editor.min.css" rel="stylesheet" type="text/css">
-    <link href="{{ app.request.baseUrl }}/css/fullscreen.min.css" rel="stylesheet" type="text/css">
+    <link href="{{app.request.getRootUri}}/css/custom-theme.css" rel="stylesheet" type="text/css">
+    <link href="{{app.request.getRootUri}}/css/froala_editor.min.css" rel="stylesheet" type="text/css">
+    <link href="{{app.request.getRootUri}}/css/fullscreen.min.css" rel="stylesheet" type="text/css">
     <!--custom style for citation editor-->
     
 {% endblock %}
