@@ -10,7 +10,7 @@
             <div class="card-content">
               <span class="card-title white-text">Create a Quiz</span>
               <div class="row">
-                    <form class="col s12 offset-m2" action="/create_quiz" method="post">
+                    <form class="col s12 offset-m2" action="{{app.request.getRootUri}}/create_quiz" method="post">
                       <div class="row">
                         <div class="input-field col m8 s12 ">
                           <input id="quiz_title" name="quiz_title" type="text" class="white-text" required>
