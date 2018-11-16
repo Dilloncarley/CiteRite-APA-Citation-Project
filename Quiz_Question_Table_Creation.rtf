@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS quizzes (
 CREATE TABLE IF NOT EXISTS quest_prob (
 	quiz_id INT NOT NULL,
 	ques_id INT NOT NULL PRIMARY KEY,
-	author VARCHAR(100),
+	author VARCHAR(300),
 	year VARCHAR(100),
 	title_a VARCHAR(100),
 	title_p VARCHAR(100),
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS quest_prob (
 CREATE TABLE IF NOT EXISTS quest_ans (
 	quiz_id INT NOT NULL,
 	ques_id INT NOT NULL PRIMARY KEY,
-	author VARCHAR(100),
+	author VARCHAR(300),
 	year VARCHAR(100),
 	title_a VARCHAR(100),
 	title_p VARCHAR(100),
