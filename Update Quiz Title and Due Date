@@ -11,7 +11,7 @@ function title_date_update($new_title, $new_date, $q_id) {
   }
 }
 // This function will expect the new title, new date, and the quiz id that is being updated.
-// This function expects the connection to the database to already be made and that the database has already been selected, i.e. mysql_select_db(‘[INSERT NAME]’).
+// This function expects the connection to the database to already be made under the variable $conn and that the database has already been selected, i.e. mysql_select_db(‘[INSERT NAME]’).
 // This function can be split into two separate functions if the case is needed.
 // This function will throw an error if the update is unable to be performed.
 // Be sure to check elements match the desired elements within the database.
