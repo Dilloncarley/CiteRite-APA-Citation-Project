@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS quizzes (
-	quiz_id INT NOT NULL PRIMARY KEY,
+	quiz_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	description VARCHAR(100),
-	dte_creatd TIMESTAMP,
+	last_updated TIMESTAMP,
 	due_date DATETIME);  <EX: YYYY-MM-DD HH:MM:SS>
 
 CREATE TABLE IF NOT EXISTS quest_prob (
